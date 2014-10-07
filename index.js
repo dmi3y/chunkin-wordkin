@@ -1,6 +1,7 @@
 var
 	config = require('./chunkfile.js'),
-	chunkDictionary = require('./chunkDictionary.js');
+	chunkDictionary = require('./chunkDictionary.js'),
+	lookup = require('./lookup.js');
 
 function getLength(str) {
 	var
@@ -13,9 +14,9 @@ function getLength(str) {
 	return maxWrd.length;
 }
 
-function chunkin(ds, converter, wordkin) {
+function core(ds, converter, word) {
 	var
-		wlen = getLength(wordkin),
+		wlen = getLength(word),
 		ix,
 		ixs;
 
@@ -65,7 +66,7 @@ function chunkin(ds, converter, wordkin) {
 		ixs = ds.ixs.slice();
 		ix = nextIx();
 
-		wordkin = dicing(wordkin, ix);
+		word = dicing(word, ix);
 	}
 
 	function convert(zzz, x, y, ofst) {
@@ -75,10 +76,10 @@ function chunkin(ds, converter, wordkin) {
 		return converter(word, ofst);
 	}
 
-	return wordkin.replace(/\[(\d+):(\d+)\]/g, convert);
+	return word.replace(/\[(\d+):(\d+)\]/g, convert);
 }
 
-function core(ds, cv, words) {
+function base(ds, cv, words) {
 	var
 		len,
 		word,
@@ -92,12 +93,12 @@ function core(ds, cv, words) {
 		for ( ;len--; ) {
 
 			word = words[len];
-			out.shift(chunkin(ds, cv, word));
+			out.shift(core(ds, cv, word));
 		}
 	} else {
 
 		word = words;
-		out = chunkin(ds, cv, word);
+		out = core(ds, cv, word);
 	}
 
 	return out;
@@ -114,13 +115,15 @@ function init(dictionary, converter) {
 	if ( dict && conv ) {
 
 		dictionaries = chunkDictionary(dict);
-		out = core.bind(null, dictionaries, conv);
+		out = base.bind(null, dictionaries, conv);
 	}
 
 	return out;
 }
 
-cm = init();
-cm('chunktheworld');
+lookup('chunkfile.js', function(path) {
+
+	console.log(path);
+});
 
 module.exports = init;

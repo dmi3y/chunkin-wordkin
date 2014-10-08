@@ -4,11 +4,11 @@ var
     fs = require("fs"),
     userdir = path.resolve(process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE);
  
-function lookup(filename, cb) {
+function search(filename, cb) {
     var
         dir = process.cwd();
  
-    function traverseUp(dir, next) {
+    function traverseUp(dir) {
         var
             fullpath;
 
@@ -22,27 +22,34 @@ function lookup(filename, cb) {
 
                 fs.stat(fullpath, function (err, stat) {
                     
-                    if ( stat && stat.isFile() ) {
+                    if ( err ) {
 
-                        next = function() { cb(fullpath); };
-                    } else if ( err ) {
+                        cb(null);
+                    } else if ( stat.isFile() ) {
 
-                        next = function() { cb(null); };
+                        cb(fullpath);
+                    } else {
+
+                        traverseUp(ndir);
                     }
                 });
             } else {
 
-                next = finalAttempt? function() { cb(null); }: next;
-            }
+                if ( finalAttempt ) {
 
-            next(ndir, next);
+                    cb(null); 
+                } else {
+
+                    traverseUp(ndir);
+                }
+            }
         });
     }
 
-    traverseUp(dir, traverseUp);
+    traverseUp(dir);
 }
 
-function lookupSync(filename) {
+function searchSync(filename) {
     var
         dir = process.cwd();
  
@@ -77,6 +84,6 @@ function lookupSync(filename) {
 }
  
 module.exports = {
-    lookup: lookup,
-    lookupSync: lookupSync
+    search: search,
+    searchSync: searchSync
 };

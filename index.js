@@ -1,7 +1,7 @@
 var
     config = require('./chunkfile.js'),
     chunkDictionary = require('./chunkDictionary.js'),
-    lookup = require('./lookup.js');
+    lup = require('./lookup.js');
 
 function getLength(str) {
     var
@@ -120,10 +120,5 @@ function init(dictionary, converter) {
 
     return out;
 }
-
-// lookup('chunkfile.js', function(path) {
-
-//  console.log(path);
-// });
 
 module.exports = init;

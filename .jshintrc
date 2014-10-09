@@ -11,5 +11,5 @@
   "boss": true,
   "eqnull": true,
   "node": true,
-  "maxcomplexity": 8
+  "maxcomplexity": 9
 }

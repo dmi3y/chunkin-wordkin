@@ -1,5 +1,5 @@
+'use strict';
 var
-    config = require('./chunkfile.js'),
     chunkDictionary = require('./chunkDictionary.js'),
     lup = require('./lookup.js');
 
@@ -93,7 +93,7 @@ function base(ds, cv, words) {
         for ( ;len--; ) {
 
             word = words[len];
-            out.shift(core(ds, cv, word));
+            out.unshift(core(ds, cv, word));
         }
     } else {
 
@@ -104,21 +104,56 @@ function base(ds, cv, words) {
     return out;
 }
 
-function init(dictionary, converter) {
+function getOut(a, path, isSync) {
     var
-        dict = dictionary || config.dictionary,
-        conv = converter || config.converter,
+        words,
+        conf = path && require(path),
+        dict,
+        opt = a || {},
+        conv,
         dictionaries,
-        out = 'no way';
+        out = 'Bad options.',
+        goon;
 
+    if ( opt || conf ) {
 
-    if ( dict && conv ) {
+        dict = opt.dictionary || conf.dictionary;
+        conv = opt.converter || conf.converter;
+        words = opt.words;
+        goon = words || isSync;
 
-        dictionaries = chunkDictionary(dict);
-        out = base.bind(null, dictionaries, conv);
+        if ( dict && conv && goon ) {
+
+            dictionaries = chunkDictionary(dict);
+            out = isSync? base.bind(null, dictionaries, conv): base(dictionaries, conv, words);
+        }
     }
 
     return out;
+} 
+
+function init(a, b) {
+    var
+        out,
+        path;
+
+    if ( typeof b === 'function' ) {
+
+        lup.search('chunkfile.js', function(path) {
+
+            out = getOut(a, path);
+            b(out);
+        });
+
+    } else {
+
+        path = lup.searchSync('chunkfile.js');
+
+        out = getOut(a, path, true);
+        return out;
+    }
+
+
 }
 
 module.exports = init;

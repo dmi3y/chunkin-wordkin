@@ -6,31 +6,36 @@
 
 Two basic ways, synchronously and asynchronously.
 
-    var
-        cw = require('chunkin-wordkin')
-        cwSync = cw({
-            dictionary: ['chunk', 'the', 'world'],
-            converter: function(word, ofst) {
-                var
-                    out = ofst? '-' + word: word;
-                return out;
-            }
-        });
 
-    console.log(cwSync('chunktheworld!')) // chunk-the-world!
+```javascript
+var
+    cw = require('chunkin-wordkin'),
+    opt1 = {
+        dictionary: ['chunk', 'the', 'world'],
+        converter: function(word, ofst) {
+            var
+                out = ofst? '-' + word: word;
+            return out;
+        }
+    },
+    opt2 = {
+        dictionary: ['chunk', 'the', 'world'],
+        converter: function(word, ofst) {
+            var
+                out = ofst? word.charAt(0).toUpperCase() + word.slice(1): word;;
+            return out;
+        },
+        words: ['chunktheworld!', 'worldchunkthe!']
+    },
+    cwSync = cw(opt1);
 
-    cw({
-            dictionary: ['chunk', 'the', 'world'],
-            converter: function(word, ofst) {
-                var
-                    out = ofst? word.charAt(0).toUpperCase() + word.slice(1): word;;
-                return out;
-            },
-            words: ['chunktheworld!', 'worldchunkthe!']
-        }, function(camelCased) {
+console.log(cwSync('chunktheworld!')) // chunk-the-world!
 
-            console.log(camelCased); // ['chunkTheWorld!', 'worldChunkThe']
-    });
+cw(opt2, function(camelCased) {
+
+        console.log(camelCased); // ['chunkTheWorld!', 'worldChunkThe']
+});
+```
 
 Options object takes two parameters for synchronous and three for asynchronous methods respecfully.
 

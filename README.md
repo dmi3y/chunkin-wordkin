@@ -44,4 +44,4 @@ Options object takes two parameters for synchronous and three for asynchronous m
 
 Synchronous function, after being initiated by feeding options object into constructor, takes the same material which is passed for `words` async option.
 
-To save time and efforts `dictionary` and `converter` options could be saved into current working directory, or any upper level directory till the root or user home directory.
+To save time and efforts `dictionary` and `converter` options could be saved into current working directory, or any upper level directory till the root or user home directory into the `chunkfile.js` JavaScript file. Essantially it is regular node mogule with according exports object.

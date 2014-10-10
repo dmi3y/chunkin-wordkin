@@ -38,7 +38,7 @@ cw(opt2, function(camelCased) {
 
 Options object takes two parameters for synchronous and three for asynchronous methods respecfully.
 
-1. `dictionary` - array of words to being used as a basic dictionary.
+1. `dictionary` - array of words to be used as a basic dictionary.
 2. `converter` - function to convert matched entries `word` in the position `ofst`.
 3. `words` - array of words or word string to being chunked, this parameter only for asynchronious way of using, and it is required.
 

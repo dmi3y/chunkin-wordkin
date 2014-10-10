@@ -1,0 +1,9 @@
+.gitignore
+.npmignore
+.editorconfig
+.jshintrc
+chunkfile.js
+example.js
+gulpfile.js
+node_modules
+test

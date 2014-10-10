@@ -1,11 +1,10 @@
 # chunkin-wordkin
 
->Hurling or 'chucking' a words solely by JavaScript means for fun and profit.
+>Hurling or 'chucking' words solely by JavaScript means for fun and profit.
 
 ## How to use
 
-Two basic ways, synchronously and asynchronously.
-
+Synchronously or asynchronously.
 
 ```javascript
 var
@@ -33,7 +32,7 @@ console.log(cwSync('chunktheworld!')) // chunk-the-world!
 
 cw(opt2, function(camelCased) {
 
-        console.log(camelCased); // ['chunkTheWorld!', 'worldChunkThe']
+    console.log(camelCased); // ['chunkTheWorld!', 'worldChunkThe!']
 });
 ```
 
@@ -41,7 +40,7 @@ Options object takes two parameters for synchronous and three for asynchronous m
 
 1. `dictionary` - array of words to being used as a basic dictionary.
 2. `converter` - function to convert matched entries `word` in the position `ofst`.
-3. `words` - array of words or word string to being chunked, this parameter only for asynchronious way of using.
+3. `words` - array of words or word string to being chunked, this parameter only for asynchronious way of using, and it is required.
 
 Synchronous function, after being initiated by feeding options object into constructor, takes the same material which is passed for `words` async option.
 

@@ -1,7 +1,32 @@
 {
   "name": "chunkin-wordkin",
-  "description": "Chunks words",
-  "version": "0.0.0",
+  "description": "Chunks words based on dictionary",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dmi3y/chunkin-wordkin",
+  "bugs": "https://github.com/dmi3y/chunkin-wordkin/issues",
+  "author": {
+    "name": "Dmitry",
+    "email": "lapshukov@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmi3y/chunkin-wordkin"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "words",
+    "chunking",
+    "processor",
+    "dictionary"
+  ],
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.8.8",

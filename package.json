@@ -1,7 +1,7 @@
 {
   "name": "chunkin-wordkin",
   "description": "Chunks words based on dictionary",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/dmi3y/chunkin-wordkin",
   "bugs": "https://github.com/dmi3y/chunkin-wordkin/issues",
   "author": {
@@ -28,7 +28,7 @@
     "dictionary"
   ],
   "dependencies": {
-    "searchup": "0.0.2"
+    "searchup": "0.0.1"
   },
   "devDependencies": {
     "gulp": "^3.8.8",

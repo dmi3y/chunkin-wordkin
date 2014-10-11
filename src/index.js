@@ -1,7 +1,7 @@
 'use strict';
 var
     chunkDictionary = require('./chunkDictionary.js'),
-    lup = require('./lookup.js');
+    lup = require('searchup');
 
 function getLength(str) {
     var
@@ -130,7 +130,7 @@ function getOut(a, path, isSync) {
     }
 
     return out;
-} 
+}
 
 function init(a, b) {
     var

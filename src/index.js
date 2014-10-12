@@ -8,7 +8,7 @@ function getLength(str) {
         maxWrd;
 
     maxWrd = str.split(/\[\d+:\d+\]/g).reduce(function(a, b){
-        return a > b? a: b;
+        return a.length > b.length? a: b;
     });
 
     return maxWrd.length;

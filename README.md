@@ -28,7 +28,7 @@ var
     },
     cwSync = cw(opt1);
 
-console.log(cwSync('chunktheworld!')) // chunk-the-world!
+console.log(cwSync('chunktheworld!')); // chunk-the-world!
 
 cw(opt2, function(camelCased) {
 

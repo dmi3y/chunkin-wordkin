@@ -1,7 +1,7 @@
 {
   "name": "chunkin-wordkin",
   "description": "Chunks words based on dictionary",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/dmi3y/chunkin-wordkin",
   "bugs": "https://github.com/dmi3y/chunkin-wordkin/issues",
   "author": {
